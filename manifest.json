@@ -1,0 +1,13 @@
+{
+    "name": "Twatter",
+    "version": "0.01",
+    "manifest_version": 3,
+    "permissions": [
+        "activeTab",
+        "scripting"
+    ],
+    "content_scripts": [ {
+        "js": [ "script.js" ],
+        "matches": [ "https://www.twitter.com/*", "https://mobile.twitter.com/*", "https://twitter.com/*" ]
+    } ]
+}
