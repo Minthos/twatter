@@ -5,11 +5,15 @@ function findAndClick(className) {
   }
 }
 
-function removeParentsToDepth(node, depth){
-    parent = node.parentNode
-    parent.removeChild(node);
-    if(depth > 0){
-        removeParentsToDepth(parent, depth-1);
+function removePromoted(node){
+    p = node.parentNode
+    if(p == null){
+        return;
+    } else if (node.className == 'css-1dbjc4n r-j5o65s r-qklmqi r-1adg3ll r-1ny4l3l'){
+        p.removeChild(node);
+        return;
+    } else {
+        removePromoted(p);
     }
 }
 
@@ -22,8 +26,9 @@ function findAndRemove(className) {
 
 function findAndRemovePromoted(){
   for (const span of document.querySelectorAll("span")) {
-    if (span.textContent == 'Promoted') {
-      removeParentsToDepth(span, 10);
+    if (span.textContent == 'Promoted'
+        || span.textContent.includes('Promoted by')) {
+      removePromoted(span);
     }
   }
 }
